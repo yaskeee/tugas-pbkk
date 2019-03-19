@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd">
+        
+    <context:property-placeholder location="classpath:note.properties"/>
+
+    <bean id="myReminder" 
+    	class="com.yaske.noteapp.Reminder">   
+    </bean>
+
+    <bean id="myAssignment" 
+    	class="com.yaske.noteapp.SchoolNote">  
+    	
+    	<!-- Injecting literal value using file .properties -->
+    	<property name="subject" value="${note.subject}"></property>
+    	<property name="assignment" value="${note.assignment}"></property>
+    	
+    	<!-- Dependency injection using setter -->
+    	<property name="myAssignment" ref="myReminder"></property>
+    	
+    	<!-- Injecting literal value -->
+    	<!-- property name="name" value="Abdul Munif"></property-->
+    	<!-- property name="email" value="munif@if.its.ac.id"></property-->
+    </bean>
+
+    <!-- more bean definitions go here -->
+
+</beans>
